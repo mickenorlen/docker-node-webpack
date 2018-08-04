@@ -1,0 +1,15 @@
+web:
+  build: .
+  container_name: "$APP_NAME"
+  user: "1000:1000"
+  volumes:
+    - ".:/src/app"
+  expose:
+    - "3000"
+    - "35729"
+  ports:
+    - "3030:3000"
+    - "35729:35729"
+  working_dir: /src/app
+  # Start in development by default
+  command: "yarn d startup dev"

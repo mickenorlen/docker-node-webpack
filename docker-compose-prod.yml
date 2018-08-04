@@ -1,0 +1,3 @@
+web:
+  # Start in production
+  command: "yarn d startup prod"
