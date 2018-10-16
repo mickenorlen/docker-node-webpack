@@ -1,26 +1,44 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "start": "babel-node node_modules/webpack/bin/webpack.js --config webpack.config.js",
-    "//": "Run scripts functions with: yarn script functionName",
-    "d": ". ./scripts/docker.bash &&",
-    "webpack": ". ./scripts/webpack.bash &&"
-  },
-  "dependencies": {
-    "node-sass": "^4.9.2",
-    "pug": "^2.0.3"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "webpack": "^4.16.4",
-    "webpack-cli": "^3.1.0"
-  }
+	"name": "app",
+	"version": "1.0.0",
+	"description": "",
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.16.4",
+		"pug": "^2.0.3",
+		"vue": "^2.5.17"
+	},
+	"scripts": {
+		"d": ". ./docker/docker.sh &&",
+		"eslint": "eslint --ext .js,.vue ./app/public/js/**",
+		"slint": "sass-lint -v",
+		"startup": ". ./startup.sh &&",
+		"clean": "rm -rf ./node_modules && find app/public/build -type f ! -name .gitkeep -delete"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.1.2",
+		"babel-cli": "^6.26.0",
+		"babel-eslint": "^10.0.1",
+		"babel-loader": "^8.0.4",
+		"babel-preset-env": "^1.7.0",
+		"css-loader": "^1.0.0",
+		"eslint": "^5.7.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jest": "^21.25.1",
+		"eslint-plugin-vue": "^4.7.1",
+		"jest": "^23.6.0",
+		"mini-css-extract-plugin": "^0.4.4",
+		"node-sass": "^4.9.4",
+		"sass-lint": "^1.12.1",
+		"sass-loader": "^7.1.0",
+		"style-loader": "^0.23.1",
+		"vue-loader": "^15.4.2",
+		"vue-style-loader": "^4.1.2",
+		"vue-template-compiler": "^2.5.17",
+		"webpack": "^4.16.4",
+		"webpack-cli": "^3.1.0",
+		"webpack-notifier": "^1.7.0"
+	}
 }

@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title=app
+    if settings.env == 'production'
+      link(rel='stylesheet', href='build/main.css')
+
+  body
+    block content
+
+  footer
+      script(src="build/main.js")

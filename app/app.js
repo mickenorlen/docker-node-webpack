@@ -1,12 +1,23 @@
-import express from 'express';
-const app = express();
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
-app.listen(4000, () => {
-  console.log('Listening');
-});
+// import express from 'express';
 
+// // Constants
+// const PORT = 3000;
+
+// // App
+// const app = express();
+// app.get('/', (req, res) => {
+//   res.send('Hello world\n');
+// });
+
+// app.listen(PORT);
+// console.log(`Running on ${PORT}`);
+
+
+import express from 'express';
+import path from 'path';
+
+import routes from './routes/index';
+// import users from './routes/users';
 // var express = require('express');
 // var path = require('path');
 // var favicon = require('serve-favicon');
@@ -17,11 +28,34 @@ app.listen(4000, () => {
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
 
+const app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.set('mode', 'hej')
+app.use(express.static(path.join(__dirname, 'public')));
+app.locals.env = app.settings.env;
+// app.get("/", (req, res) => {
+//     res.render("index");
+// });
+
+// Let express know there's a public directory.
+
+app.use('/', routes);
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World')
+// })
+app.listen(3000, () => {
+  console.log('Listening');
+});
+
+
 // var app = express();
 
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
+// view engine setup
+
 
 // // uncomment after placing your favicon in /public
 // //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -31,8 +65,12 @@ app.listen(4000, () => {
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 // app.use('/', routes);
 // app.use('/users', users);
+
+
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -66,4 +104,3 @@ app.listen(4000, () => {
 // });
 
 
-// module.exports = app;

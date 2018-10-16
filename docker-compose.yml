@@ -1,15 +1,11 @@
 web:
-  build: .
-  container_name: "$APP_NAME"
-  user: "1000:1000"
+  image: ${BUILD_IMAGE}
+  user: "${USERID}:${GROUPID}"
   volumes:
-    - ".:/src/app"
-  expose:
-    - "3000"
-    - "35729"
+    - "./app:/src/app"
+    - "./node_modules/:/src/app/node_modules"
+    - "./package.json:/src/app/package.json"
+    - "./docker/startup.sh:/src/app/startup.sh"
   ports:
-    - "3030:3000"
-    - "35729:35729"
+      - "3000:3000"
   working_dir: /src/app
-  # Start in development by default
-  command: "yarn d startup dev"
