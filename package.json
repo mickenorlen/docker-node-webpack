@@ -11,10 +11,11 @@
 	},
 	"scripts": {
 		"d": ". ./docker/docker.sh &&",
+		"clean": "find node_modules -mindepth 1 -delete && find app/public/build -type f ! -name .gitkeep -delete",
 		"eslint": "eslint --ext .js,.vue ./app/public/js/**",
 		"slint": "sass-lint -v",
-		"startup": ". ./startup.sh &&",
-		"clean": "rm -rf ./node_modules && find app/public/build -type f ! -name .gitkeep -delete"
+		"test": "jest",
+		"coverage": "jest --coverage"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.2",

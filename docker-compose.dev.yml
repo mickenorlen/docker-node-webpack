@@ -1,0 +1,4 @@
+web:
+  container_name: "${APP_NAME}_dev_web"
+  environment:
+    - APP_ENV=development

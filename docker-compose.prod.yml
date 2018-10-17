@@ -1,6 +1,6 @@
 web:
   container_name: "${APP_NAME}_prod_web"
-  # Start in production
-  command: sh -c ". ./startup.sh && prod"
+  environment:
+    - APP_ENV=production
   restart: always
 

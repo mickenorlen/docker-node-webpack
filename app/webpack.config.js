@@ -4,8 +4,7 @@ import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
-console.log('Webpack env', process.env.NODE_ENV);
-
+console.info('webpack env:', process.env.NODE_ENV);
 
 // Production conf
 const webpackConf = {

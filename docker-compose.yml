@@ -1,6 +1,6 @@
 web:
   image: ${BUILD_IMAGE}
-  user: "${USERID}:${GROUPID}"
+  user: "${CURRENT_UID}" # Set in docker.sh
   volumes:
     - "./app:/src/app"
     - "./node_modules/:/src/app/node_modules"
@@ -9,3 +9,6 @@ web:
   ports:
       - "3000:3000"
   working_dir: /src/app
+  command: "sh -c ./startup.sh"
+  environment:
+    - CURRENT_UID=${CURRENT_UID}

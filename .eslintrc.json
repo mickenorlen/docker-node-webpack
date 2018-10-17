@@ -17,5 +17,7 @@
         "plugin:vue/recommended",
         "plugin:jest/recommended"
     ],
-    "rules": {}
+    "rules": {
+        "no-console": ["error", { "allow": ["info", "warn", "error"] }]
+    }
 }

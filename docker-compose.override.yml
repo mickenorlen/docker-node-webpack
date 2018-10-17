@@ -1,4 +1,0 @@
-web:
-  container_name: "${APP_NAME}_dev_web"
-  # Start in development by default
-  command: sh -c ". ./startup.sh && dev"

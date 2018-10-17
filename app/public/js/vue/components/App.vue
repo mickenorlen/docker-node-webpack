@@ -5,7 +5,5 @@
 </template>
 
 <script>
-export default {
-  turn: 100,
-};
+console.info('test logging');
 </script>
