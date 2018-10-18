@@ -1,5 +1,4 @@
 // import webpack from 'webpack';
-import WebpackNotifierPlugin from 'webpack-notifier';
 import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
@@ -14,7 +13,6 @@ const webpackConf = {
     filename: 'main.js',
   },
   plugins: [
-    new WebpackNotifierPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

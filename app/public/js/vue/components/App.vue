@@ -5,5 +5,5 @@
 </template>
 
 <script>
-console.info('test logging');
+console.info('test logging2    ');
 </script>

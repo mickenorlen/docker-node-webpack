@@ -8,10 +8,10 @@ else
 	npm rebuild node-sass # Make sure correct env binary
 fi
 
-echo "env: $APP_ENV"
+echo "starting env: $APP_ENV"
 
 if [[ $APP_ENV == 'production' ]]; then
-	NODE_ENV=production $babelBin $webpackBin --mode production --config webpack.config.js &&
+	NODE_ENV=production $babelBin $webpackBin --mode production --config webpack.config.js &
 	NODE_ENV=production $babelBin app.js
 
 else #Development

@@ -1,4 +1,5 @@
-// Styles
+// Style
+
 import '../styles/index.scss';
 
 // JS/Vue
