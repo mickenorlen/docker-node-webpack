@@ -5,9 +5,10 @@ web:
     - "./app:/src/app"
     - "./node_modules/:/src/app/node_modules"
     - "./package.json:/src/app/package.json"
+    - "./yarn.lock:/src/app/yarn.lock"
     - "./docker/startup.sh:/src/app/startup.sh"
   ports:
-      - "3000:3000"
+      - "${PORTS}"
   working_dir: /src/app
   command: "sh -c ./startup.sh"
   environment:
