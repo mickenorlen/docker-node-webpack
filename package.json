@@ -1,8 +1,8 @@
 {
 	"name": "app",
 	"version": "1.0.0",
-	"description": "",
-	"author": "",
+	"description": "A docker node webpack example template",
+	"author": "Mikael Norlén",
 	"license": "MIT",
 	"dependencies": {
 		"express": "^4.16.4",
