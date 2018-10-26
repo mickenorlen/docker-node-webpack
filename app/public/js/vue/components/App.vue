@@ -7,3 +7,10 @@
 <script>
 console.info('test logging');
 </script>
+
+<style lang="scss" scoped>
+
+#app {
+  background-color: silver;
+}
+</style>

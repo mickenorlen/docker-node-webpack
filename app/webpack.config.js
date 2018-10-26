@@ -1,10 +1,33 @@
-// import webpack from 'webpack';
 import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+// PostCss
+import postCssPresetEnv from 'postcss-preset-env';
+import autoPrefixer from 'autoprefixer';
+import postCssImport from 'postcss-import';
+import cssNano from 'cssnano';
 
+const inDev = process.env.NODE_ENV === 'development';
 console.info('webpack env:', process.env.NODE_ENV);
 
+// PostCss loader conf
+const postCssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    ident: 'postcss',
+    plugins: loader => [
+      postCssPresetEnv({
+        browsers: 'last 4 versions',
+      }),
+      postCssImport({ root: loader.resourcePath }),
+      autoPrefixer,
+      ...(inDev ? [] : [cssNano]),
+    ],
+  },
+};
+
+/* WEBPACK CONF */
 // Production conf
 const webpackConf = {
   entry: './public/js/index.js',
@@ -14,10 +37,7 @@ const webpackConf = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: 'main.css',
-      // chunkFilename: "[id].css"
     }),
     new VueLoaderPlugin(),
   ],
@@ -33,41 +53,56 @@ const webpackConf = {
       {
         test: /\.scss$/,
         use: [
-          // fallback to yarn dstyle-loader in development
+          'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
+          postCssLoader,
           'sass-loader',
         ],
       },
       {
         test: /\.vue$/,
-        use: 'vue-loader',
+        use: {
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              js: 'babel-loader',
+            },
+          },
+        },
       },
     ],
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
 };
 
-
 // Development overrides
-if (process.env.NODE_ENV === 'development') {
+if (inDev) {
   webpackConf.devtool = 'source-maps';
+  postCssLoader.options.sourceMap = true;
+  delete webpackConf.optimization;
 
   // Override sass rule conf
   webpackConf.module.rules[1] = {
     test: /\.scss$/,
-    use: [{
-      loader: 'style-loader',
-    }, {
-      loader: 'css-loader',
-      options: {
-        sourceMap: true,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+        },
       },
-    }, {
-      loader: 'sass-loader',
-      options: {
-        sourceMap: true,
+      postCssLoader,
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        },
       },
-    }],
+    ],
   };
 }
 

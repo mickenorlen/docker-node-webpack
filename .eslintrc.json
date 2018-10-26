@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "node": true,
-        "jest/globals": true
+        "jest/globals": true,
+        "jest": true
     },
      "parserOptions": {
          "parser": "babel-eslint"
@@ -14,10 +15,11 @@
     ],
     "extends": [
         "airbnb-base",
-        "plugin:vue/recommended",
+        "plugin:vue/essential",
         "plugin:jest/recommended"
     ],
     "rules": {
-        "no-console": ["error", { "allow": ["info", "warn", "error"] }]
+        "no-console": ["error", { "allow": ["info", "warn", "error"] }],
+        "arrow-parens": "off"
     }
 }
